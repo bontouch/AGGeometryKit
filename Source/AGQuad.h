@@ -25,6 +25,10 @@
 #import <Foundation/Foundation.h>
 #import "AGPoint.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*
  tl = top left
  tr = top right
@@ -74,3 +78,6 @@ inline NSString * NSStringFromAGQuad(AGQuad q);
 CATransform3D CATransform3DWithQuadFromBounds(AGQuad q, CGRect rect);
 CATransform3D CATransform3DWithQuadFromRect(AGQuad q, CGRect rect);
 
+#ifdef __cplusplus
+}
+#endif

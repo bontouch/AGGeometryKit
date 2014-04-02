@@ -43,6 +43,10 @@
     animation.removedOnCompletion = NO;
     animation.fillMode = kCAFillModeForwards;
     animation.beginTime = CACurrentMediaTime() + delay;
+	
+	// tomasf 2014-02-12. Discrete animation avoids strange glitches.
+	animation.calculationMode = kCAAnimationDiscrete;
+	numberOfFrames = 60 * duration;
     
     NSMutableArray *values = [NSMutableArray arrayWithCapacity:numberOfFrames];
     

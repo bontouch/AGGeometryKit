@@ -30,6 +30,11 @@ typedef union AGPoint {
     double v[2];
 } AGPoint;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 extern const AGPoint AGPointZero;
 inline BOOL AGPointEqual(AGPoint p1, AGPoint p2);
 inline BOOL AGPointEqualToCGPoint(AGPoint p1, CGPoint p2);
@@ -44,3 +49,7 @@ inline double AGPointDotProduct(AGPoint p1, AGPoint p2);
 inline double AGPointCrossProduct(AGPoint p1, AGPoint p2);
 inline CGPoint AGPointAsCGPoint(AGPoint p);
 inline NSString * NSStringFromAGPoint(AGPoint p);
+
+#ifdef __cplusplus
+}
+#endif

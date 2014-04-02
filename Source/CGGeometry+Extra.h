@@ -25,6 +25,10 @@
 
 // http://processingjs.nihongoresources.com/bezierinfo/
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 CGPoint CGPointGetPointForAnchorPointInRect(CGPoint anchor, CGRect rect);
 CGPoint CGPointGetAnchorPointForPointInRect(CGPoint point, CGRect rect);
 CGPoint CGPointForCenterInRect(CGRect rect);
@@ -64,3 +68,6 @@ inline CGFloat CGPointVectorGetLength(CGPoint v);
 inline CGFloat CGPointVectorDotProduct(CGPoint v1, CGPoint v2);
 inline CGFloat CGPointVectorCrossProductZComponent(CGPoint v1, CGPoint v2);
 
+#ifdef __cplusplus
+}
+#endif

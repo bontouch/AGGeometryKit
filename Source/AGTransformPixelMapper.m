@@ -89,7 +89,7 @@
     for (int y = 0 ; y < height ; ++y)
     for (int x = 0 ; x < width ; ++x)
     {
-        int indexOutput = bytesPerPixel * x + bytesPerRow * y;
+        size_t indexOutput = bytesPerPixel * x + bytesPerRow * y;
         
         CGPoint modelPoint = CGPointMake((x*2.0/scale - outSize.width/scale)/2.0,
                                          (y*2.0/scale - outSize.height/scale)/2.0);
@@ -98,7 +98,7 @@
         p.x *= scale;
         p.y *= scale;
         
-        int indexInput = bytesPerPixel*(int)p.x + (bytesPerRow*(int)p.y);
+        size_t indexInput = bytesPerPixel*(int)p.x + (bytesPerRow*(int)p.y);
         BOOL isOutOfBounds = p.x >= width || p.x < 0 || p.y >= height || p.y < 0 || indexInput > bytesInTotal;
         
         if (isOutOfBounds)
@@ -165,7 +165,7 @@
                                 bitsPerComponent,
                                 CGImageGetBytesPerRow(imageRef),
                                 CGImageGetColorSpace(imageRef),
-                                kCGImageAlphaPremultipliedLast
+                                (CGBitmapInfo)kCGImageAlphaPremultipliedLast
                                 );
     
     imageRef = CGBitmapContextCreateImage(ctx);
