@@ -36,6 +36,8 @@
 
 @end
 
+// Code and algorithms derives from http://stackoverflow.com/a/13850972/202451
+
 @implementation AGTransformPixelMapper
 
 - (id)initWithTransform:(CATransform3D)t anchorPoint:(CGPoint)anchorPoint
@@ -122,7 +124,7 @@
 {
     size_t width = CGImageGetWidth(imageRef);
     size_t height = CGImageGetHeight(imageRef);
-    
+
     size_t bitsPerComponent = 8;
     size_t bytesPerPixel = 4;
     size_t bytesPerRow = CGImageGetBytesPerRow(imageRef);
@@ -130,14 +132,14 @@
 
     unsigned char *inputData = malloc(bytesInTotal);
     unsigned char *outputData = malloc(bytesInTotal);
-    
+
     // in case not every bit is drawn into outputData (this is necessary)
     for (int ii = 0 ; ii < bytesInTotal; ++ii)
     {
         outputData[ii] = 0;
         inputData[ii] = 0;
     }
-    
+
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef context = CGBitmapContextCreate(inputData,
                                                  width,
@@ -149,7 +151,7 @@
     CGColorSpaceRelease(colorSpace);
     CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
     CGContextRelease(context);
-    
+
     [self mapBitmap:inputData
                  to:outputData
              inSize:CGSizeMake(width, height)
@@ -157,7 +159,7 @@
               scale:scale
       bytesPerPixel:bytesPerPixel
         bytesPerRow:bytesPerRow];
-    
+
     CGContextRef ctx;
     ctx = CGBitmapContextCreate(outputData,
                                 width,
@@ -165,15 +167,15 @@
                                 bitsPerComponent,
                                 CGImageGetBytesPerRow(imageRef),
                                 CGImageGetColorSpace(imageRef),
-                                (CGBitmapInfo)kCGImageAlphaPremultipliedLast
+                                (CGBitmapInfo) kCGImageAlphaPremultipliedLast
                                 );
-    
+
     imageRef = CGBitmapContextCreateImage(ctx);
-    
+
     CGContextRelease(ctx);
     free(inputData);
     free(outputData);
-    
+
     return imageRef;
 }
 
