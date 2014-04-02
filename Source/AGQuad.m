@@ -42,7 +42,7 @@
 
 const AGQuad AGQuadZero = { (AGPoint){0, 0}, (AGPoint){0, 0}, (AGPoint){0, 0}, (AGPoint){0, 0} };
 
-extern BOOL AGQuadEqual(AGQuad q1, AGQuad q2)
+BOOL AGQuadEqual(AGQuad q1, AGQuad q2)
 {
     for(int i = 0; i < 4; i++)
     {
@@ -54,18 +54,18 @@ extern BOOL AGQuadEqual(AGQuad q1, AGQuad q2)
     return YES;
 }
 
-extern BOOL AGQuadIsConvex(AGQuad q)
+BOOL AGQuadIsConvex(AGQuad q)
 {
     BOOL isConvex = AGLineIntersection(AGLineMake(q.bl, q.tr), AGLineMake(q.br, q.tl), NULL);
     return isConvex;
 }
 
-extern BOOL AGQuadIsValid(AGQuad q)
+BOOL AGQuadIsValid(AGQuad q)
 {
     return AGQuadIsConvex(q);
 }
 
-extern AGQuad AGQuadMove(AGQuad q, double x, double y)
+AGQuad AGQuadMove(AGQuad q, double x, double y)
 {
     q.tl.x += x;
     q.tr.x += x;
@@ -78,35 +78,35 @@ extern AGQuad AGQuadMove(AGQuad q, double x, double y)
     return q;
 }
 
-extern AGQuad AGQuadInsetLeft(AGQuad q, double inset)
+AGQuad AGQuadInsetLeft(AGQuad q, double inset)
 {
     q.tl.x += inset;
     q.bl.x += inset;
     return q;
 }
 
-extern AGQuad AGQuadInsetRight(AGQuad q, double inset)
+AGQuad AGQuadInsetRight(AGQuad q, double inset)
 {
     q.tr.x -= inset;
     q.br.x -= inset;
     return q;
 }
 
-extern AGQuad AGQuadInsetTop(AGQuad q, double inset)
+AGQuad AGQuadInsetTop(AGQuad q, double inset)
 {
     q.tl.y += inset;
     q.tr.y += inset;
     return q;
 }
 
-extern AGQuad AGQuadInsetBottom(AGQuad q, double inset)
+AGQuad AGQuadInsetBottom(AGQuad q, double inset)
 {
     q.tl.y -= inset;
     q.tr.y -= inset;
     return q;
 }
 
-extern AGQuad AGQuadMirror(AGQuad q, BOOL x, BOOL y)
+AGQuad AGQuadMirror(AGQuad q, BOOL x, BOOL y)
 {
     AGQuad mirroredQ;
     if(x)
@@ -126,12 +126,12 @@ extern AGQuad AGQuadMirror(AGQuad q, BOOL x, BOOL y)
     return mirroredQ;
 }
 
-extern AGQuad AGQuadMake(AGPoint tl, AGPoint tr, AGPoint br, AGPoint bl)
+AGQuad AGQuadMake(AGPoint tl, AGPoint tr, AGPoint br, AGPoint bl)
 {
     return (AGQuad){.tl = tl, .tr = tr, .br = br, .bl = bl};
 }
 
-extern AGQuad AGQuadMakeWithCGPoints(CGPoint tl, CGPoint tr, CGPoint br, CGPoint bl)
+AGQuad AGQuadMakeWithCGPoints(CGPoint tl, CGPoint tr, CGPoint br, CGPoint bl)
 {
     AGQuad q;
     q.tl = AGPointMakeWithCGPoint(tl);
@@ -141,7 +141,7 @@ extern AGQuad AGQuadMakeWithCGPoints(CGPoint tl, CGPoint tr, CGPoint br, CGPoint
     return q;
 }
 
-extern AGQuad AGQuadMakeWithCGRect(CGRect rect)
+AGQuad AGQuadMakeWithCGRect(CGRect rect)
 {
     AGQuad q;
     q.tl.x = CGRectGetMinX(rect);
@@ -155,7 +155,7 @@ extern AGQuad AGQuadMakeWithCGRect(CGRect rect)
     return q;
 }
 
-extern AGQuad AGQuadMakeWithCGSize(CGSize size)
+AGQuad AGQuadMakeWithCGSize(CGSize size)
 {
     AGQuad q = AGQuadZero;
     q.tr.x = size.width;
@@ -165,35 +165,35 @@ extern AGQuad AGQuadMakeWithCGSize(CGSize size)
     return q;
 }
 
-extern double AGQuadGetSmallestX(AGQuad q)
+double AGQuadGetSmallestX(AGQuad q)
 {
     double values[4];
     AGQuadGetXValues(q, values);
     return minInArray(values, 4, NULL);
 }
 
-extern double AGQuadGetBiggestX(AGQuad q)
+double AGQuadGetBiggestX(AGQuad q)
 {
     double values[4];
     AGQuadGetXValues(q, values);
     return maxInArray(values, 4, NULL);
 }
 
-extern double AGQuadGetSmallestY(AGQuad q)
+double AGQuadGetSmallestY(AGQuad q)
 {
     double values[4];
     AGQuadGetYValues(q, values);
     return minInArray(values, 4, NULL);
 }
 
-extern double AGQuadGetBiggestY(AGQuad q)
+double AGQuadGetBiggestY(AGQuad q)
 {
     double values[4];
     AGQuadGetYValues(q, values);
     return maxInArray(values, 4, NULL);
 }
 
-extern CGRect AGQuadGetBoundingRect(AGQuad q)
+CGRect AGQuadGetBoundingRect(AGQuad q)
 {
     double xValues[4];
     double yValues[4];
@@ -214,14 +214,14 @@ extern CGRect AGQuadGetBoundingRect(AGQuad q)
     return rect;
 }
 
-extern AGPoint AGQuadGetCenter(AGQuad q)
+AGPoint AGQuadGetCenter(AGQuad q)
 {
     AGPoint center = AGPointZero;
     AGLineIntersection(AGLineMake(q.bl, q.tr), AGLineMake(q.br, q.tl), &center);
     return center;
 }
 
-extern CGSize AGQuadGetSize(AGQuad q)
+CGSize AGQuadGetSize(AGQuad q)
 {
     CGRect smallestRect = AGQuadGetBoundingRect(q);
     return smallestRect.size;
@@ -245,7 +245,7 @@ void AGQuadGetYValues(AGQuad q, double *out_values)
     }
 }
 
-extern AGQuad AGQuadInterpolation(AGQuad q1, AGQuad q2, double progress)
+AGQuad AGQuadInterpolation(AGQuad q1, AGQuad q2, double progress)
 {
     AGQuad q;
     for(int i = 0; i < 4; i++)
@@ -255,7 +255,7 @@ extern AGQuad AGQuadInterpolation(AGQuad q1, AGQuad q2, double progress)
     return q;
 }
 
-extern AGQuad AGQuadApplyCGAffineTransform(AGQuad q, CGAffineTransform t)
+AGQuad AGQuadApplyCGAffineTransform(AGQuad q, CGAffineTransform t)
 {
     for(int i = 0; i < 4; i++)
     {
@@ -268,7 +268,7 @@ extern AGQuad AGQuadApplyCGAffineTransform(AGQuad q, CGAffineTransform t)
     return q;
 }
 
-extern AGQuad AGQuadApplyCATransform3D(AGQuad q, CATransform3D t)
+AGQuad AGQuadApplyCATransform3D(AGQuad q, CATransform3D t)
 {
     for(int i = 0; i < 4; i++)
     {
@@ -281,7 +281,7 @@ extern AGQuad AGQuadApplyCATransform3D(AGQuad q, CATransform3D t)
     return q;
 }
 
-extern NSString * NSStringFromAGQuad(AGQuad q)
+NSString * NSStringFromAGQuad(AGQuad q)
 {
     return [NSString stringWithFormat:@"tl: %@,\n\t"
             "tr: %@,\n\t"

@@ -23,17 +23,17 @@
 
 #import "AGMath.h"
 
-extern float interpolatef(float startValue, float endValue, float progress)
+float interpolatef(float startValue, float endValue, float progress)
 {
     return startValue + ((endValue - startValue) * progress);
 }
 
-extern double interpolate(double startValue, double endValue, double progress)
+double interpolate(double startValue, double endValue, double progress)
 {
     return startValue + ((endValue - startValue) * progress);
 }
 
-extern float interpolationProgressf(float startValue, float endValue, float value)
+float interpolationProgressf(float startValue, float endValue, float value)
 {
     double diff = value - startValue;
     
@@ -47,7 +47,7 @@ extern float interpolationProgressf(float startValue, float endValue, float valu
     }
 }
 
-extern double interpolationProgress(double startValue, double endValue, double value)
+double interpolationProgress(double startValue, double endValue, double value)
 {
     double diff = value - startValue;
     
@@ -61,7 +61,7 @@ extern double interpolationProgress(double startValue, double endValue, double v
     }
 }
 
-extern double minInArray(double values[], unsigned int numberOfValues, unsigned int *out_index)
+double minInArray(double values[], unsigned int numberOfValues, unsigned int *out_index)
 {
     double lowest = values[0];
     unsigned int index = 0;
@@ -84,7 +84,7 @@ extern double minInArray(double values[], unsigned int numberOfValues, unsigned 
     return lowest;
 }
 
-extern double maxInArray(double values[], unsigned int numberOfValues, unsigned int *out_index)
+double maxInArray(double values[], unsigned int numberOfValues, unsigned int *out_index)
 {
     double highest = values[0];
     unsigned int index = 0;
@@ -107,7 +107,7 @@ extern double maxInArray(double values[], unsigned int numberOfValues, unsigned 
     return highest;
 }
 
-extern float clampf(float value, float min, float max)
+float clampf(float value, float min, float max)
 {
     if(value > max)
         return max;
@@ -116,7 +116,7 @@ extern float clampf(float value, float min, float max)
     return value;
 }
 
-extern double clamp(double value, double min, double max)
+double clamp(double value, double min, double max)
 {
     if(value > max)
         return max;
@@ -134,7 +134,7 @@ inline BOOL iswithinf(float value, float min, float max)
     return YES;
 }
 
-extern BOOL iswithin(double value, double min, double max)
+BOOL iswithin(double value, double min, double max)
 {
     if(value >= max)
         return NO;
@@ -143,17 +143,17 @@ extern BOOL iswithin(double value, double min, double max)
     return YES;
 }
 
-extern double radiansToDegrees(double radians)
+double radiansToDegrees(double radians)
 {
     return radians * 180 / M_PI;
 }
 
-extern double degreesToRadians(double degrees)
+double degreesToRadians(double degrees)
 {
     return degrees * M_PI / 180;
 }
 
-extern double floatToDoubleZeroFill(float value)
+double floatToDoubleZeroFill(float value)
 {
     double val = [[NSString stringWithFormat:@"%f", value] doubleValue];
     return val;

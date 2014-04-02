@@ -52,24 +52,24 @@
 #define M_1_TAU     0.15915494309189533576888376337251436   /* 1/tau = 1/2pi        */
 #define M_2_TA      M_1_PI                                  /* 2/tau = 2/2pi = 1/pi */
 
-inline float interpolatef(float startValue, float endValue, float progress);
-inline double interpolate(double startValue, double endValue, double progress);
+float interpolatef(float startValue, float endValue, float progress);
+double interpolate(double startValue, double endValue, double progress);
 
-inline float interpolationProgressf(float startValue, float endValue, float value);
-inline double interpolationProgress(double startValue, double endValue, double value);
+float interpolationProgressf(float startValue, float endValue, float value);
+double interpolationProgress(double startValue, double endValue, double value);
 
-inline double minInArray(double values[], unsigned int numberOfValues, unsigned int *out_index);
-inline double maxInArray(double values[], unsigned int numberOfValues, unsigned int *out_index);
+double minInArray(double values[], unsigned int numberOfValues, unsigned int *out_index);
+double maxInArray(double values[], unsigned int numberOfValues, unsigned int *out_index);
 
-inline float clampf(float value, float min, float max);
-inline double clamp(double value, double min, double max);
+float clampf(float value, float min, float max);
+double clamp(double value, double min, double max);
 
-inline BOOL iswithinf(float value, float min, float max);
-inline BOOL iswithin(double value, double min, double max);
+BOOL iswithinf(float value, float min, float max);
+BOOL iswithin(double value, double min, double max);
 
-inline double radiansToDegrees(double radians);
-inline double degreesToRadians(double degrees);
+double radiansToDegrees(double radians);
+double degreesToRadians(double degrees);
 
-inline double floatToDoubleZeroFill(float value);
+double floatToDoubleZeroFill(float value);
 
 

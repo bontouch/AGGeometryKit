@@ -29,7 +29,7 @@ typedef union AGLine {
 } AGLine;
 
 extern const AGLine AGLineZero;
-inline AGLine AGLineMake(AGPoint start, AGPoint end);
-inline AGLine AGLineMakeWithCGPoint(CGPoint start, CGPoint end);
-inline double AGLineLength(AGLine l);
+AGLine AGLineMake(AGPoint start, AGPoint end);
+AGLine AGLineMakeWithCGPoint(CGPoint start, CGPoint end);
+double AGLineLength(AGLine l);
 BOOL AGLineIntersection(AGLine l1, AGLine l2, AGPoint *out_pointOfIntersection);
